@@ -13,13 +13,15 @@ export async function middleware(request: NextRequest) {
         pathname.startsWith('/api/v1/models') ||
         pathname.startsWith('/api/v1/panel') ||
         pathname.startsWith('/api/v1/config') ||
-        pathname.startsWith('/api/v1/users')
+        pathname.startsWith('/api/v1/users') ||
+        pathname.startsWith('/api/init')
     ) {
         const token =
             pathname.startsWith('/api/v1/panel') ||
             pathname.startsWith('/api/v1/config') ||
             pathname.startsWith('/api/v1/users') ||
-            pathname.startsWith('/api/v1/models')
+            pathname.startsWith('/api/v1/models') ||
+            pathname.startsWith('/api/init')
                 ? ACCESS_TOKEN
                 : API_KEY
 
@@ -63,8 +65,6 @@ export async function middleware(request: NextRequest) {
 
         return response
     } else if (pathname.startsWith('/api/config/key')) {
-        return NextResponse.next()
-    } else if (pathname.startsWith('/api/init')) {
         return NextResponse.next()
     }
 
